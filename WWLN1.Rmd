@@ -1,0 +1,66 @@
+---
+title: "WWLN1"
+author: "olivia"
+date: "2022-11-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1. Journal article
+
+#2. Background information
+
+#3. Research Question/Hypotheses
+
+#4. Variables
+
+##The dependent variable
+
+##The independent variable (1)
+
+##The independent variable (2)
+
+##The independent variable (3)
+
+#5. Study design
+
+#Simulation code for 1 dataset
+```{r}
+#libraries
+library(lme4)
+library(lmerTest)
+library(tidyverse)
+library(broom.mixed)
+
+#assumptions
+PID_no <- 58 #number of subjects
+item_no <- 108 #number of items
+trial_no <- PID_no * item_no #each subject view each item once
+
+#fixed effects
+b0 <- -0.67 #intercept grand mean
+b1 <- 2.47 #effect of psychological pain
+b2 <- 1.74 #effect of physical pain
+b3 <- 0.11 #effect of negative affect
+b4 <- 0.04 #effect of positive affect
+
+#random effects
+tau_0 <- 0.61 #random intercept for subjects
+tau_1 <- 1.02 #by-subject random slope for psychological pain 
+tau_2 <- 1.76 #by-subject random slope for physical pain
+omega_0 <- 0.11 #random intercept for items
+
+#data generation
+subjects <- tibble(subject = 1:n,
+                   u0s = rnorm(n = n,
+                             mean = 0,
+                             sd = tau_0))
+
+items <- tibble(nitem=1:item_no, #item numbers
+                O_0i=rnorm(item_no, 0, omega_0)))
+
+```
+
